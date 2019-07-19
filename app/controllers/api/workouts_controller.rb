@@ -17,7 +17,8 @@ class Api::WorkoutsController < ApplicationController
   def create
     # user_id = current_user.id
     user_id = get_dummy_user.id
-    @workout = Workout.new(params)
+    w = params.permit(:date, :kind, :impression)
+    @workout = Workout.new(w)
     @workout.user_id = user_id
     @workout.timestamps = Time.now
     if @workout.save
