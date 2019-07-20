@@ -37,7 +37,7 @@ class Api::WorkoutsController < ApplicationController
     w = params.permit(:id, :date, :kind, :impression)
     if @workout.update(w)
       update_details(@workout.id)
-      render json: @workout, adapter: :json, status: 201
+      render json: @workout, adapter: :json, status: 200
     else
       render json: @workout, adapter: :json, status: 400
     end
@@ -45,6 +45,7 @@ class Api::WorkoutsController < ApplicationController
 
   def destroy
     @workout.destroy
+    render json: @workout, adapter: :json, status: 204
   end
 
   private
