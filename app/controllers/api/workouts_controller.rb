@@ -44,6 +44,7 @@ class Api::WorkoutsController < ApplicationController
   end
 
   def destroy
+    @workout.workout_details.destroy_all
     @workout.destroy
     render json: {}, adapter: :json, status: 204
   end
